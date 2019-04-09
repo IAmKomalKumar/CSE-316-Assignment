@@ -25,6 +25,10 @@ P4      |       4       |       1
 
 Calculate the average turnaround time and average waiting time for each process. The input for number of processes  and their arrival time, burst time should be given by the user.
 
+# Solution
+
+
+
 
 # Problem - 2
 
@@ -48,6 +52,10 @@ gcc problem 2.c -o problem 2.out
 ##### ScreenShot
 
 ![](https://i.imgur.com/ji8HiSA.png)
+
+provide all the asked input and you will have your answer.
+
+
 
 
 
