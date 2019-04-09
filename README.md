@@ -45,5 +45,10 @@ To comiple the file you can use the command:
 gcc problem 2.c -o problem 2.out
 ```
 
+##### ScreenShot
+
+
+![](https://photos.app.goo.gl/bRE56VhQTzWG4Dt18)
+
 
 
