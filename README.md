@@ -34,11 +34,12 @@ Consider a scenario of demand paged memory. Page table is held in registers. It 
 
 To solve this problem we have a formula which directly calculates the percentage of page fault.
 
-**Avg time = (Page Fault)*( Modified( Time ) +  (1- Modified) (Time)) + (1- Page Fault)*Memory time**
+Avg time = (Page Fault)*( Modified( Time ) + (1- Modified) (Time)) + (1- Page Fault)*Memory time
 
 After modification,the formula for page fault will be:
 
-**page fault = (Avg time - Memory access time)/(( Modified( Time )+(1- Modified) (Time)) - Memory access time)**
+page fault = (Avg time - Memory access time) / (( Modified( Time )+(1- Modified) (Time)) - Memory access time)
+
 
 
 
