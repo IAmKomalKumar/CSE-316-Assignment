@@ -47,7 +47,7 @@ gcc problem 2.c -o problem 2.out
 
 ##### ScreenShot
 
-![imgur](https://imgur.com/XD4fkm8)
+![](https://i.imgur.com/XD4fkm8.png)
 
 
 
