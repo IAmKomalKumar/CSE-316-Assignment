@@ -40,6 +40,10 @@ After modification,the formula for page fault will be:
 
 page fault = (Avg time - Memory access time) / (( Modified( Time )+(1- Modified) (Time)) - Memory access time)
 
+To comiple the file you can use the command:
+```bash
+gcc problem 2.c -o problem 2.out
+```
 
 
 
