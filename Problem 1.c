@@ -1,6 +1,6 @@
-/* Design a scheduler with multilevel queue having two queues which will schedule the processes on 
+/* Design a scheduler with multilevel queue having two queues which will schedule the processes on
 the basis of  preemptive shortest remaining processing time first algorithm (SROT) followed by
-a scheduling in which each process will get 2 units of time to execute. Also note that queue 1 
+a scheduling in which each process will get 2 units of time to execute. Also note that queue 1
 has higher priority than queue 2.  Consider the following set of processes (for reference)with
 their arrival times and the CPU burst times in milliseconds.
 -------------------------------------
@@ -26,7 +26,7 @@ typedef struct
 
 int main()
 {
-    int size;//Number of processes
+    int size,quantum,done =0;//Number of processes
     int count = 0;
     int time,smallest,waiting_time[50],turnaround_time[50],completion[50],temp_burst[50];
     double average_waiting,average_turnaround;
@@ -44,21 +44,50 @@ int main()
 		printf("Queue1/Queue2(1/2):\t");
 		scanf("%d", &no[i].queue);
 	}
+	printf("\nEnter the time quantum for Round Robin:");
+	scanf("%d",&quantum);
     for(int i=0;i<size;i++)
     {
         temp_burst[i] = no[i].burst_time;//storing the burst time in a array for  further use.
     }
+
     no[size+1].burst_time = 999;//  assign a max burst for comparison
-    for(time=0;count!=size;time++)
+
+    for(time=0;count!=size;time++) // shortest remaining time first scheduling
     {
          smallest = size+1;
          for(int i=0;i<size;i++)
          {
-            if(no[i].arrival_time<=time && no[i].burst_time<no[smallest].burst_time&& no[i].burst_time>0 )
-            smallest=i;
+            if(no[i].arrival_time<=time && no[i].burst_time<no[smallest].burst_time && no[i].burst_time>0 && no[i].queue == 1)
+            {
+                smallest=i;
+            }
          }
-         no[smallest].burst_time--;
-         if(no[smallest].burst_time == 0)
+
+         if(count >= size/2) //round robin scheduling
+          {
+            while(1)
+            {
+              for(int j=0;j<size;j++)
+              {
+                  if(no[j].arrival_time<=time && no[j].burst_time > quantum && no[j].queue == 2 )
+                  {
+                      no[j].burst_time -= quantum;
+                      smallest = j;
+                  }
+                  else if(no[j].arrival_time<=time && no[j].burst_time < quantum && no[j].queue == 2)
+                  {
+                      no[j].burst_time = 0;
+                      smallest = j;
+                      goto a;
+                  }
+              }
+            }
+          }
+
+        no[smallest].burst_time--; //decrementing  the burst time
+
+        a: if(no[smallest].burst_time == 0)
          {
             count++;
             completion[smallest] = time+1;
@@ -69,12 +98,11 @@ int main()
     printf("\n\nProcess Id\tArrival Time\t Burst Time\t Waiting Time\tTurnaround Time");
     for(int i=0;i<size;i++)
     {
-        printf("\n   %d    \t\t%d\t\t%d  \t\t%d\t\t%d",no[i].process_id,no[i].arrival_time,temp_burst[i],waiting_time[i],turnaround_time[i]);
+        printf("\n   P%d   \t\t%d\t\t%d  \t\t%d\t\t%d",no[i].process_id,no[i].arrival_time,temp_burst[i],waiting_time[i],turnaround_time[i]);
         average_waiting += waiting_time[i];
         average_turnaround += turnaround_time[i];
     }
     printf("\n\nAverage waiting time = %lf\n",average_waiting/size);
     printf("Average Turnaround time = %lf",average_turnaround/size);
-    getch();
 
 }
