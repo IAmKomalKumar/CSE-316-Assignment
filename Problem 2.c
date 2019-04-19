@@ -33,6 +33,7 @@ int main()
     printf("For this problem take the values given below or you can take your own values! \n\n");
     printf("Average time =  200 | Memory Access Time = 100 | Modification Percentage = 70%%|");
     printf(" Time_n = 8 | Time_m = 20\n\n");
+	
 
     printf("Average time :");
     scanf("%lf",&avg_time);
