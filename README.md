@@ -33,7 +33,7 @@ gcc problem 1.c -o problem 1.out
 ```
 ##### ScreenShot
 
-![](https://i.imgur.com/SQOwxWC.png)
+![](https://i.imgur.com/xDvocS0.png)
 
 provide all the asked input and you will have your answer.
 
